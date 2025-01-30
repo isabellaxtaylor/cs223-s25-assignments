@@ -1,5 +1,7 @@
 /***************************************************
+ * password.c
  * Author: Isabella taylor
+ * Date: 1/30/2025
  * Program: Bad Password Generator
  * Description: This program takes a word as input and generates a "bad" password
  * by replacing specific characters:
