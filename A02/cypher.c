@@ -2,7 +2,7 @@
  * cypher.c
  * Author: Isabella Taylor
  * Date: 1/31/2025
- * This program applies a shift cipher (Caesar cipher) to a given word.
+ * This program applies a shift cipher to a given word.
  * It shifts each letter in the word by a user-specified amount.
  * The input word must be in lowercase and contain no special characters.
  */
