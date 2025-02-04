@@ -2,16 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-int winner(int a, int b, int c, int d) {
-    int diff_a = (a <= d) ? d - a : -1;
-    int diff_b = (b <= d) ? d - b : -1;
-    int diff_c = (c <= d) ? d - c : -1;
 
-    if (diff_a >= 0 && (diff_b == -1 || diff_a < diff_b) && (diff_c == -1 || diff_a < diff_c)) {
+int winner(int a, int b, int c, int d) {
+    if (a <= d && a > b && a > c) {
         return a;
-    } else if (diff_b >= 0 && (diff_c == -1 || diff_b < diff_c)) {
+    } else if (b <= d && b > a && b > c) {
         return b;
-    } else if (diff_c >= 0) {
+    } else if (c <= d && c > a && c > b) {
         return c;
     }
     return -1;
