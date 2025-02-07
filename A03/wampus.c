@@ -2,7 +2,10 @@
  * wampus.c
  * Author: Isabella Taylor
  * Date: 02/06/2025
- * Description: 
+ * Description: generates an NxM grid, randomly 
+ * places a Wampus, and fills the remaining cells 
+ * with their Manhattan distances from the Wampus 
+ * using dynamic memory allocation.
  ---------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
