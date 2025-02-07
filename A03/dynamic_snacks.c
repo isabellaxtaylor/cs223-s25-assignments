@@ -7,49 +7,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct {
+    char name[100];
+    float price;
+    int quantity;
+} Snack;
+
 int main() {
     int numSnacks;
     
-    printf("Enter the number of snacks: ");
+    printf("Enter a number of snacks: ");
     scanf("%d", &numSnacks);
 
-    char **snacks = (char **)malloc(numSnacks * sizeof(char *));
-    float *price = (float *)malloc(numSnacks * sizeof(float));
-    int *quantity = (int *)malloc(numSnacks * sizeof(int));
-
-    if (snacks == NULL || price == NULL || quantity == NULL) {
+    Snack *snacks = (Snack *)malloc(numSnacks * sizeof(Snack));
+    if (snacks == NULL) {
         printf("Memory allocation failed.\n");
         return 1;
     }
 
     for (int i = 0; i < numSnacks; i++) {
-        snacks[i] = (char *)malloc(100 * sizeof(char));  
-        if (snacks[i] == NULL) {
-            printf("Memory allocation failed for snack name.\n");
-            return 1;
-        }
-
-        printf("\nEnter the name of snack %d: ", i + 1);
-        scanf("%s", snacks[i]);
+        printf("\nEnter a name: ");
+        scanf("%s", snacks[i].name);
         
-        printf("Enter the cost of %s: $", snacks[i]);
-        scanf("%f", &price[i]);
+        printf("Enter a cost: ");
+        scanf("%f", &snacks[i].price);
         
-        printf("Enter the quantity of %s: ", snacks[i]);
-        scanf("%d", &quantity[i]);
+        printf("Enter a quantity: ");
+        scanf("%d", &snacks[i].quantity);
     }
 
-    printf("\nWelcome to Dynamic Donna's Snack Bar.\n");
+    printf("\nWelcome to Dynamic Donna's Snack Bar.\n\n");
     for (int i = 0; i < numSnacks; i++) {
-        printf("%d) %s      cost: $%.2f     quantity: %d\n", i + 1, snacks[i], price[i], quantity[i]);
+        printf("%d) %-20s cost: $%.2f     quantity: %d\n", 
+               i, snacks[i].name, snacks[i].price, snacks[i].quantity);
     }
 
-    for (int i = 0; i < numSnacks; i++) {
-        free(snacks[i]);
-    }
     free(snacks);
-    free(price);
-    free(quantity);
-
     return 0;
 }
