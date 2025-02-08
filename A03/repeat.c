@@ -10,8 +10,13 @@
 
 void repeat(const char *s, int n) {
     int s_len = strlen(s);
-    int total_len = s_len * n + 1;
 
+    if (n > 0 && s_len > (2147483647 / n)) {
+        printf("Cannot allocate new string. Exiting...\n");
+        return;
+    }
+
+    int total_len = s_len * n + 1;
     char *repeated = (char *)malloc(total_len * sizeof(char));
 
     if (repeated == NULL) {
@@ -19,27 +24,36 @@ void repeat(const char *s, int n) {
         return;
     }
 
-    repeated[0] = '\0';
+    char *ptr = repeated;
     for (int i = 0; i < n; i++) {
-        strcat(repeated, s);
+        memcpy(ptr, s, s_len);
+        ptr += s_len;
     }
+    *ptr = '\0';
 
-    printf("%s\n", repeated);
+    printf("Your word is %s\n", repeated);
 
     free(repeated);
 }
 
 int main() {
     char s[32];
+    char buffer[32];
     int n;
 
     printf("Enter a word: ");
-    scanf("%31s", s);
+    fflush(stdout);
+    if (scanf("%31s", s) != 1) {
+        printf("Invalid input.\n");
+        return 1;
+    }
+
+    getchar();
 
     printf("Enter a count: ");
-    scanf("%d", &n);
-        if (scanf("%d", &n) != 1) {
-        printf("Invalid input. Not a number.\n");
+    fflush(stdout);
+    if (fgets(buffer, sizeof(buffer), stdin) == NULL || sscanf(buffer, "%d", &n) != 1 || n < 0) {
+        printf("Invalid input. Please enter a valid positive integer.\n");
         return 1;
     }
 
