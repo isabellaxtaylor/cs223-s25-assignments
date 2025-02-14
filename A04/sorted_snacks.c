@@ -1,7 +1,8 @@
 /*----------------------------------------------
- * Author: 
- * Date: 
- * Description
+ * Author: Isabella Taylor
+ * Date: 02/14/2025
+ * Description:  A program that allows users to add snacks to a linked list
+ * and sorts them by name, cost, and quantity.
  ---------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,49 +15,33 @@ typedef struct Snack {
     int quantity;
 } Snack;
 
-// Function to create a new snack node
-struct Snack* create_snack(char *name, float cost, int quantity) {
-    struct Snack* new_snack = malloc(sizeof(struct Snack));
-    if (new_snack==NULL) {
-        printf("ERROR: Out of space!\n");
-        exit(1);
-    }
+void insert_first(Snack **head, char *name, float cost, int quantity) {
+    Snack *new_snack = malloc(sizeof(Snack));
     strcpy(new_snack->name, name);
     new_snack->cost = cost;
     new_snack->quantity = quantity;
-    return new_snack;
-}
-
-// Function to insert a snack at the beginning of the list
-void insert_first(Snack **head, char *name, float cost, int quantity) {
-    Snack *new_snack = create_snack(name, cost, quantity);
     new_snack->next = *head;
     *head = new_snack;
 }
 
-// Function to print the snack list
 void printList(Snack *head) {
-    printf("\nWelcome to Sorted Sally's Snack Bar.\n\n");
     int index = 0;
+    printf("\nWelcome to Sorted Sally's Snack Bar.\n\n");
     while (head) {
-        printf("%d) %-20s cost: $%.2f     quantity: %d\n", index, head->name, head->cost, head->quantity);
+        printf("%d) %-20s cost: $%.2f     quantity: %d\n", index++, head->name, head->cost, head->quantity);
         head = head->next;
-        index++;
     }
 }
 
-// Function to clear and free all items in the list
 void clear(Snack **head) {
-    Snack *temp;
     while (*head) {
-        temp = *head;
+        Snack *temp = *head;
         *head = (*head)->next;
         free(temp);
     }
-    *head = NULL;
 }
 
-// Function to sort by cost
+
 void sortCost(Snack **head) {
     if (*head == NULL || (*head)->next == NULL) return;
     Snack *sorted = NULL;
@@ -74,7 +59,6 @@ void sortCost(Snack **head) {
     *head = sorted;
 }
 
-// Function to sort by name
 void sortName(Snack **head) {
     if (*head == NULL || (*head)->next == NULL) return;
     Snack *sorted = NULL;
@@ -92,7 +76,6 @@ void sortName(Snack **head) {
     *head = sorted;
 }
 
-// Function to sort by quantity
 void sortQuantity(Snack **head) {
     if (*head == NULL || (*head)->next == NULL) return;
     Snack *sorted = NULL;
