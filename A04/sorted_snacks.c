@@ -1,4 +1,5 @@
 /*----------------------------------------------
+ * sorted_snacks.c
  * Author: Isabella Taylor
  * Date: 02/14/2025
  * Description:  A program that allows users to add snacks to a linked list
