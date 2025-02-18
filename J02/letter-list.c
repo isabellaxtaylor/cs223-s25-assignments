@@ -8,11 +8,22 @@ typedef struct Word {
     char letter;
 } Word;
 
-void remove_letter(Word **head, char *modifiedWord, char letter) {
+void remove_letter(Word **head, char *originalWord, char letter) {
+    int j = 0;
+    char modifiedWord[31];
+
+    for (int i = 0; originalWord[i] != '\0'; i++) {
+        if (originalWord[i] != letter) {
+            modifiedWord[j++] = originalWord[i];
+        }
+    }
+    modifiedWord[j] = '\0';
     Word *new_word = malloc(sizeof(Word));
+
     strcpy(new_word->word, modifiedWord);
     new_word->letter = letter;
     new_word->next = NULL;
+
     *head = new_word;
 }
 
@@ -44,16 +55,8 @@ int main() {
     
     int length = strlen(word);
     char* newWord = malloc((length + 1) * sizeof(char));
-    
-    int j = 0;
-    for (int i = 0; i < length; i++) {
-        if (word[i] != letter) {
-            newWord[j++] = word[i];
-        }
-    }
-    newWord[j] = '\0';
 
-    remove_letter(&head, newWord, letter);
+    remove_letter(&head, word, letter);
     
     printWord(head);
     clear(&head);
