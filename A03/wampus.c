@@ -5,7 +5,9 @@
  * Description: generates an NxM grid, randomly 
  * places a Wampus, and fills the remaining cells 
  * with their Manhattan distances from the Wampus 
- * using dynamic memory allocation.
+ * using dynamic memory allocation. This program uses 
+ * command-line arguments to get the grid size, but 
+ * prompts the user for input if no arguments are given.
  ---------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
@@ -62,4 +64,3 @@ int main() {
 
     return 0;
 }
-
