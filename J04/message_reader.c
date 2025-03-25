@@ -26,8 +26,8 @@ int main(int argc, char* argv[]) {
     }
 
     printf("Version: %.2f\n", meta.version);
-    printf("Year: %u\n", meta.year);
-    printf("Length: %u\n", meta.length);
+    printf("Year: %d\n", meta.year);
+    printf("Length: %d\n", meta.length);
 
     char* message = malloc(meta.length + 1);
     if (!message) {
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
         fclose(fp);
         return 1;
     }
-    
+
     printf("Message: %s\n", message);
 
     free(message);
