@@ -1,3 +1,8 @@
+/*----------------------------------------------
+ * Author: Isabella Taylor
+ * Date: 04/23/2025
+ * Description: First-fit free-list memory allocator
+ ---------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
